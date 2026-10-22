@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "automine",
+  "version": "${version}",
+  "name": "AutoMine",
+  "description": "Automatycznie kopie wybrane, widoczne bloki w tle.",
+  "authors": ["you"],
+  "environment": "client",
+  "entrypoints": {
+    "client": ["pl.automine.AutoMineMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
