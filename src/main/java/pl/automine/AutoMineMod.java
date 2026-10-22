@@ -88,8 +88,16 @@ public class AutoMineMod implements ClientModInitializer {
             client.setScreen(new BlockSelectScreen());
         }
         while (toggleKey.wasPressed()) {
-            if (active) stop(client, "AutoMine: wyłączony");
-            else start(client);
+            long window = client.getWindow().getHandle();
+            boolean ctrl = InputUtil.isKeyPressed(window, GLFW.GLFW_KEY_LEFT_CONTROL)
+                    || InputUtil.isKeyPressed(window, GLFW.GLFW_KEY_RIGHT_CONTROL);
+            if (ctrl) {
+                addLookedAtBlock(client);
+            } else if (active) {
+                stop(client, "AutoMine: wyłączony");
+            } else {
+                start(client);
+            }
         }
         if (!active) return;
 
@@ -164,6 +172,24 @@ public class AutoMineMod implements ClientModInitializer {
         } else if (miningTicks > 400) { // 20 s na jednym bloku = coś jest nie tak
             blacklist(w, target);
             target = null;
+        }
+    }
+
+    /** Ctrl+K: dodaje do listy blok, na który patrzy gracz. */
+    private static void addLookedAtBlock(MinecraftClient client) {
+        if (client.player == null || client.world == null) return;
+        if (!(client.crosshairTarget instanceof BlockHitResult hit)
+                || hit.getType() != HitResult.Type.BLOCK) {
+            client.player.sendMessage(Text.literal("AutoMine: patrz na blok, który chcesz dodać"), true);
+            return;
+        }
+        Block block = client.world.getBlockState(hit.getBlockPos()).getBlock();
+        if (TARGETS.add(block)) {
+            save();
+            client.player.sendMessage(Text.literal("AutoMine: dodano ").append(block.getName()), true);
+        } else {
+            client.player.sendMessage(Text.literal("AutoMine: ").append(block.getName())
+                    .append(Text.literal(" jest już na liście")), true);
         }
     }
 
