@@ -2,5 +2,7 @@
   "key.automine.open": "Otwórz listę bloków",
   "key.automine.toggle": "Start / stop kopania",
   "key.categories.automine": "AutoMine",
-  "screen.automine.title": "AutoMine - wybierz bloki"
+  "screen.automine.title": "AutoMine - wybierz bloki",
+  "key.automine.zone": "Strefa: zaznacz róg (Ctrl = usuń ostatnią, Shift = wyczyść)",
+  "key.automine.mode": "Przełącz tryb: bloki / strefy"
 }

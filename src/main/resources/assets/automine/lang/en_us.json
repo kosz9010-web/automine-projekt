@@ -2,5 +2,7 @@
   "key.automine.open": "Open block list",
   "key.automine.toggle": "Start / stop mining",
   "key.categories.automine": "AutoMine",
-  "screen.automine.title": "AutoMine - choose blocks"
+  "screen.automine.title": "AutoMine - choose blocks",
+  "key.automine.zone": "Zone: mark corner (Ctrl = delete last, Shift = clear all)",
+  "key.automine.mode": "Switch mode: blocks / zones"
 }
